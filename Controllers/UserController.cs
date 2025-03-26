@@ -11,13 +11,18 @@ public class UserController : Controller
         // GET: User
         public ActionResult Index()
         {
-            // Implement the Index method here
+            return View(userlist);
         }
 
         // GET: User/Details/5
         public ActionResult Details(int id)
         {
-            // Implement the details method here
+            var user = userlist.FirstOrDefault(u => u.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
         }
 
         // GET: User/Create
